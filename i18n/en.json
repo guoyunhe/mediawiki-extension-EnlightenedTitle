@@ -1,0 +1,7 @@
+{
+  "@metadata": {
+    "authors": ["Guo Yunhe"]
+  },
+  "enlightenedtitle_desc":
+    "Improve HTML <title> tag output of MediaWiki. Better for SEO and readability."
+}

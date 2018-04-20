@@ -1,0 +1,33 @@
+{
+  "name": "EnlightenedTitle",
+  "author": "Guo Yunhe",
+  "url": "https://github.com/guoyunhe/mediawiki-extension-EnlightenedTitle",
+  "descriptionmsg": "enlightenedtitle_desc",
+  "license-name": "GPL-3.0+",
+  "type": "other",
+  "requires": {
+    "MediaWiki": ">= 1.27.0"
+  },
+  "AutoloadClasses": {
+    "EnlightenedTitle": "classes/EnlightenedTitle.php"
+  },
+  "MessagesDirs": {
+    "EnlightenedTitle": "i18n"
+  },
+  "Hooks": {
+    "BeforePageDisplay": "EnlightenedTitle::onBeforePageDisplay"
+  },
+  "ConfigRegistry": {
+    "EnlightenedTitle": "GlobalVarConfig::newInstance"
+  },
+  "config": {
+    "EnlightenedTitlePattern": {
+      "value": true,
+      "path": false,
+      "description": "The description for the configuration",
+      "descriptionmsg": "myextension-config-myextsetting",
+      "public": true
+    }
+  },
+  "manifest_version": 2
+}
