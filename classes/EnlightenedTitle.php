@@ -9,7 +9,7 @@ class EnlightenedTitle {
         $title_string = $out->getPageTitle();
         $title = Title::newFromText($title_string);
         $html_title = $out->getHTMLTitle();
-        
+
         if ($title->isMainPage()) {
             return;
         } else {
