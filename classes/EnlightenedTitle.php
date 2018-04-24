@@ -1,11 +1,19 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class EnlightenedTitle {
     /**
      * @static
      */
     public function onBeforePageDisplay ( OutputPage &$out, Skin &$skin ) {
         global $wgSitename;
+
+        $config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'EnlightenedTitle' );
+
+        $separator = $config->get( 'EnlightenedTitleHTMLTitleSeparator' );
+        $reverse = $config->get( 'EnlightenedTitleHTMLTitleReverse' );
+
         $title_string = $out->getPageTitle();
         $title = Title::newFromText($title_string);
         $html_title = $out->getHTMLTitle();
@@ -21,14 +29,18 @@ class EnlightenedTitle {
             // Modify <h1></h1>
             $out->setPageTitle( $title->getSubpageText() );
 
-            $new_title_string = implode( ' - ' , self::parsePageName( $title->getText(), true ) );
+            $new_title_string = implode( $separator , self::parsePageName( $title->getText(), $reverse ) );
 
             $namespace = $title->getNsText();
             if ($namespace && $namespace !== $wgSitename) {
-                $new_title_string .= ' - ' . $namespace;
+                if ($reverse) {
+                    $new_title_string .= $separator . $namespace;
+                } else {
+                    $new_title_string = $namespace . $separator . $new_title_string;
+                }
             }
 
-            $new_html_title = preg_replace($title_string, $new_title_string, $html_title);
+            $new_html_title = preg_replace('%' . preg_quote($title_string, '%') . '%', $new_title_string, $html_title);
 
             // Modify <title></title>
             $out->setHTMLTitle($new_html_title);

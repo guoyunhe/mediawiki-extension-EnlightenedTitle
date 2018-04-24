@@ -21,11 +21,15 @@
     "EnlightenedTitle": "GlobalVarConfig::newInstance"
   },
   "config": {
-    "EnlightenedTitlePattern": {
+    "EnlightenedTitleHTMLTitleSeparator": {
+      "value": " - ",
+      "description": "Separator between subpages and namespace in <title>",
+      "public": true
+    },
+    "EnlightenedTitleHTMLTitleReverse": {
       "value": true,
-      "path": false,
-      "description": "The description for the configuration",
-      "descriptionmsg": "myextension-config-myextsetting",
+      "description":
+        "Whether to reverse the order of subpages and namespace in <title>",
       "public": true
     }
   },
